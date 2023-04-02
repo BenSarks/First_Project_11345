@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/life_LinearLayout"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginVertical="10dp"
+        >
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/life1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="10dp"
+            app:srcCompat="@drawable/heart" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/life2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="10dp"
+            app:srcCompat="@drawable/heart" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/life3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="10dp"
+            app:srcCompat="@drawable/heart" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/left_pointer_layout"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="10dp">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/left_arrow"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@color/white"
+            android:contentDescription="left pointer"
+            android:scaleType="fitCenter"
+            android:src="@drawable/left"
+            tools:ignore="HardcodedText">
+
+        </androidx.appcompat.widget.AppCompatImageButton>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/right_pointer_layout"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="10dp">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/right_arrow"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@color/white"
+            android:contentDescription="right pointer"
+            android:scaleType="fitCenter"
+            android:src="@drawable/right"
+            tools:ignore="HardcodedText">
+
+        </androidx.appcompat.widget.AppCompatImageButton>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/boom_layout"
+        android:orientation="horizontal"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="10dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/boom"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/bubble_chat"
+            android:visibility="invisible"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/car_layout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_above="@+id/right_pointer_layout"
+        android:layout_marginHorizontal="10dp">
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/car"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/car"
+            android:visibility="invisible"
+            />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/car2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/car"
+            />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/car3"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/car"
+            android:visibility="invisible"
+            />
+    </LinearLayout>
+
+    <GridLayout
+        android:id="@+id/game_gridLayout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:columnCount="3"
+        android:rowCount="5"
+        android:layout_below="@+id/life_LinearLayout"
+        android:layout_above="@+id/right_pointer_layout">
+
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/obstecale4"
+            android:layout_width="70dp"
+            android:visibility="invisible"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:layout_row="4"
+            android:layout_column="0"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/dynamite" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/obstecale5"
+            android:layout_width="70dp"
+            android:visibility="invisible"
+            android:layout_height="70dp"
+            android:layout_row="4"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/dynamite" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/obstecale6"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:visibility="invisible"
+            android:layout_row="4"
+            android:layout_column="2"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/dynamite" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/obstecale7"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:visibility="invisible"
+            android:layout_row="3"
+            android:layout_column="0"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/dynamite" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/obstecale8"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_row="3"
+            android:layout_column="1"
+            android:visibility="invisible"
+            android:layout_columnWeight="1"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/dynamite" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/obstecale9"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:layout_row="3"
+            android:layout_column="2"
+            android:layout_margin="10dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/dynamite" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/obstecale10"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:layout_margin="10dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/dynamite" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/obstecale11"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:visibility="invisible"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/dynamite" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/obstecale12"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:layout_row="2"
+            android:layout_column="2"
+            android:layout_margin="10dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/dynamite" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:visibility="invisible"
+            android:id="@+id/obstecale13"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/dynamite" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/obstecale14"
+            android:layout_width="70dp"
+            android:visibility="invisible"
+            android:layout_height="70dp"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/dynamite" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/obstecale15"
+            android:layout_width="70dp"
+            android:visibility="invisible"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/dynamite" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/obstecale16"
+            android:layout_width="70dp"
+            android:visibility="invisible"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/dynamite" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/obstecale17"
+            android:layout_width="70dp"
+            android:visibility="invisible"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/dynamite" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/obstecale18"
+            android:layout_width="70dp"
+            android:visibility="invisible"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/dynamite" />
+    </GridLayout>
+
+</RelativeLayout>
