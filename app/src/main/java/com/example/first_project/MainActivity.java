@@ -23,11 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private ShapeableImageView[] main_IMG_Cars;
     private ShapeableImageView[][] main_IMG_Matrix_Game;
     private AppCompatImageButton[] main_Button_Options;
-    private int rows = 0;
-    private int cols = 0;
     private Vibrator vb;
     private int timesDied = 0;
-    private int currentCarIndex = 1;
     private int[] obstacleIndexArr;
 
     private GameManager gameManager;
@@ -54,32 +51,30 @@ public class MainActivity extends AppCompatActivity {
         main_Button_Options = new AppCompatImageButton[]{findViewById(R.id.left_arrow),
                 findViewById(R.id.right_arrow)};
         GridLayout gridLayout = findViewById(R.id.game_gridLayout);
-        rows = gridLayout.getRowCount();
-        obstacleIndexArr = new int[rows + 1];
-        cols = gridLayout.getColumnCount();
-        gameManager = new GameManager(rows, cols);
-        for (int i = 0; i < rows; i++) {
+        gameManager = new GameManager(gridLayout.getRowCount(), gridLayout.getColumnCount());
+        obstacleIndexArr = new int[gameManager.getRows()];
+        for (int i = 0; i < gameManager.getRows(); i++) {
             obstacleIndexArr[i] = (-1);
         }
         main_IMG_Cars = new ShapeableImageView[]{findViewById(R.id.car),
                 findViewById(R.id.car2), findViewById(R.id.car3)};
-        main_IMG_Matrix_Game = new ShapeableImageView[rows][cols];
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                main_IMG_Matrix_Game[i][j] = (ShapeableImageView) gridLayout.getChildAt(i * cols + j);
+        main_IMG_Matrix_Game = new ShapeableImageView[gameManager.getRows()][gameManager.getCols()];
+        for (int i = 0; i < gameManager.getRows(); i++) {
+            for (int j = 0; j < gameManager.getCols(); j++) {
+                main_IMG_Matrix_Game[i][j] = (ShapeableImageView) gridLayout.getChildAt(i * gameManager.getCols() + j);
             }
         }
         vb = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
     }
 
     private void setButtonListeners() {
-        main_Button_Options[0].setOnClickListener(v -> arrowClicked(currentCarIndex, currentCarIndex - 1));
-        main_Button_Options[1].setOnClickListener(v -> arrowClicked(currentCarIndex, currentCarIndex + 1));
+        main_Button_Options[0].setOnClickListener(v -> arrowClicked(gameManager.getCurrentCarIndex(), gameManager.getCurrentCarIndex() - 1));
+        main_Button_Options[1].setOnClickListener(v -> arrowClicked(gameManager.getCurrentCarIndex(), gameManager.getCurrentCarIndex() + 1));
     }
 
     public void arrowClicked(int previousIndex, int futureIndex) {
         if (gameManager.canCarMove(futureIndex)) {
-            currentCarIndex = futureIndex;
+            gameManager.setCurrentCarIndex(futureIndex);
             setINVISIBLE(main_IMG_Cars[previousIndex]);
             setINVISIBLE(main_IMG_Matrix_Game[0][previousIndex]);
             setVISIBLE(main_IMG_Cars[futureIndex]);
@@ -89,19 +84,20 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void updateGameMatrixUI() {
+        obstacleIndexArr[gameManager.getRows() - 1] = gameManager.getRandomColIndex();
         if (obstacleIndexArr[0] > -1) {//clears the previous obstacle from the first row only
             setINVISIBLE(main_IMG_Matrix_Game[0][obstacleIndexArr[0]]);
         }
-        for (int i = 0; i < rows - 1; i++) {
+        for (int i = 0; i < gameManager.getRows()-1 ; i++) {
             if (obstacleIndexArr[i + 1] > (-1)) {
                 obstacleIndexArr[i] = obstacleIndexArr[i + 1];
                 setVISIBLE(main_IMG_Matrix_Game[i][obstacleIndexArr[i]]);//moves all of the visible obstacles downwards
                 setINVISIBLE(main_IMG_Matrix_Game[i + 1][obstacleIndexArr[i]]);// remove the visible marker from the previous obstacles
             }
         }
-        obstacleIndexArr[rows - 1] = gameManager.getRandomColIndex();
         updateLives(obstacleIndexArr[0]);
     }
+
 
     private void vibrate() {
         vb.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
@@ -109,15 +105,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateLives(int index) {
         if (index > -1) {
-            if (main_IMG_Matrix_Game[0][currentCarIndex].isShown()) {
-                setINVISIBLE(main_IMG_Cars[currentCarIndex]);//
+            if (main_IMG_Matrix_Game[0][gameManager.getCurrentCarIndex()].isShown()) {
+                setINVISIBLE(main_IMG_Cars[gameManager.getCurrentCarIndex()]);//
                 main_IMG_Lifes[timesDied].setVisibility(View.INVISIBLE);
                 Toast.makeText(getApplicationContext(), "💥", Toast.LENGTH_SHORT).show();
                 vibrate();
                 timesDied++;
             }
-            if (!main_IMG_Matrix_Game[0][currentCarIndex].isShown()) {
-                setVISIBLE(main_IMG_Cars[currentCarIndex]);//
+            if (!main_IMG_Matrix_Game[0][gameManager.getCurrentCarIndex()].isShown()) {
+                setVISIBLE(main_IMG_Cars[gameManager.getCurrentCarIndex()]);//
             }
             if (timesDied == 3) {//restart the lifes
                 for (int i = 0; i < timesDied; i++) {

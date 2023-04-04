@@ -40,7 +40,39 @@
             android:layout_weight="1"
             app:srcCompat="@drawable/heart" />
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/evil_LinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/life_LinearLayout"
 
+        android:layout_marginVertical="10dp"
+        tools:ignore="RtlHardcoded">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/demon1"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/demon" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/demon2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/demon" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/demon3"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/demon" />
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/left_pointer_layout"
         android:layout_width="wrap_content"
